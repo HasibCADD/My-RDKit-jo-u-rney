@@ -1,0 +1,19 @@
+aspirin = Chem.MolFromSmiles('CC(=O)OC1=CC=CC=C1C(=O)O')
+benzene = Chem.MolFromSmiles('c1ccccc1')
+ethanol = Chem.MolFromSmiles('CCO')
+caffeine = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
+paracetamol = Chem.MolFromSmiles('CC(=O)Nc1ccc(O)cc1')
+
+aspirin.SetProp("_Name", "Aspirin")
+paracetamol.SetProp("_Name", "Paracetamol")
+
+aspirin_h = Chem.AddHs(aspirin)
+paracetamol_h = Chem.AddHs(paracetamol)
+
+Draw.MolsToGridImage(
+    [aspirin_h, paracetamol_h], 
+    legends=[aspirin.GetProp("_Name"), paracetamol.GetProp("_Name")],  # Pulls names automatically!
+    molsPerRow=3,                  # Side by side
+    subImgSize=(400, 300),         # Bigger images
+    useSVG=True                    # Sharp quality
+)
