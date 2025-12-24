@@ -41,3 +41,16 @@ Draw.MolsToGridImage(
     subImgSize=(400, 300),  # Nice big size
     useSVG=True             # Sharp quality
 )
+
+
+
+#ANOTHER SIMPLE LEGEND SETUP
+
+mol = Chem.MolFromSmiles('CCO')  # Ethanol
+print("Heavy atoms only:", mol.GetNumAtoms())  # 3 (C-C-O)
+
+mol_h = Chem.AddHs(mol)
+print("With explicit H:", mol_h.GetNumAtoms())  # 9 (3 heavy + 6 H)
+
+# Visualize
+Draw.MolsToGridImage([mol, mol_h], legends=["Implicit H", "Explicit H"], molsPerRow=2)
