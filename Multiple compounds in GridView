@@ -17,3 +17,27 @@ Draw.MolsToGridImage(
     subImgSize=(400, 300),         # Bigger images
     useSVG=True                    # Sharp quality
 )
+
+
+#without set Prop we can setup legend 
+
+# Create the molecules
+aspirin = Chem.MolFromSmiles('CC(=O)Oc1ccccc1C(=O)O')
+paracetamol = Chem.MolFromSmiles('CC(=O)Nc1ccc(O)cc1')
+
+# Add explicit hydrogens (makes them look nicer with all H atoms shown)
+aspirin = Chem.AddHs(aspirin)
+paracetamol = Chem.AddHs(paracetamol)
+
+# Set the name properties
+# aspirin.SetProp("_Name", "Aspirin")
+# paracetamol.SetProp("_Name", "Paracetamol")
+
+# Visualize in a grid with names as clear titles
+Draw.MolsToGridImage(
+    [aspirin, paracetamol],
+    legends=["aspirin SMILES input", "paracetamol SMILES input"],  # Uses the props!
+    molsPerRow=2,           # Side-by-side
+    subImgSize=(400, 300),  # Nice big size
+    useSVG=True             # Sharp quality
+)
