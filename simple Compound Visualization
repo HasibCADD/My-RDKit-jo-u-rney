@@ -1,0 +1,21 @@
+# 1. Create paracetamol
+paracetamol = Chem.MolFromSmiles('CC(=O)Nc1ccc(O)cc1')
+
+# 2. Inspect
+print("Atoms:", paracetamol.GetNumAtoms())          # 11 heavy atoms
+print("Bonds:", paracetamol.GetNumBonds())          # 11
+print("Canonical SMILES:", Chem.MolToSmiles(paracetamol))
+# Output: CC(=O)Nc1ccc(O)cc1  (note: canonical may reorder branches)
+paracetamol = Chem.AddHs(paracetamol)
+
+# 3. Set name
+paracetamol.SetProp("_Name", "Paracetamol")
+
+
+# 4. Bonus invalid check (as above)
+
+# 5. Visualize
+paracetamol  # Inline in Jupyter
+Draw.MolsToGridImage([paracetamol], 
+                     legends=[paracetamol.GetProp("_Name")],
+                     molsPerRow=1000, subImgSize=(300,300))
