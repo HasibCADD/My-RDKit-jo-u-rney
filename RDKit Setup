@@ -1,0 +1,17 @@
+!pip install rdkit
+
+# Core RDKit imports
+from rdkit import Chem
+from rdkit.Chem import Draw
+from rdkit.Chem.Draw import IPythonConsole  # Special for Jupyter notebooks
+from rdkit.Chem import Descriptors, Lipinski, Crippen, rdMolDescriptors
+from rdkit.Chem import AllChem  # For 3D conformations, fingerprints, etc.
+from rdkit import RDLogger
+
+# Optional: Suppress RDKit warnings (they can be very verbose)
+RDLogger.DisableLog('rdApp.*')
+
+# For nice inline display in Jupyter notebooks
+IPythonConsole.ipython_useSVG = True   # Better quality images (SVG instead of PNG)
+IPythonConsole.drawOptions.addStereoAnnotation = True  # Show stereochemistry
+IPythonConsole.molSize = (400, 300)    # Adjust default molecule image size if needed
