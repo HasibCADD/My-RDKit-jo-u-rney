@@ -26,4 +26,24 @@ aspirin
 
 #Looping over Bonds
 
+print("\nBonds:")
+for bond in aspirin.GetBonds():
+    start = bond.GetBeginAtomIdx()
+    end = bond.GetEndAtomIdx()
+    bond_type = bond.GetBondType()        # SINGLE, DOUBLE, AROMATIC
+    aromatic = bond.GetIsAromatic()
+    
+    print(f"Bond {start}-{end}: {bond_type} | aromatic: {aromatic}")
 
+
+# finding specific atom
+
+# Find all oxygen atoms
+oxygens = [atom for atom in aspirin.GetAtoms() if atom.GetSymbol() == 'O']
+
+print("Found", len(oxygens), "oxygen atoms")
+
+for o_atom in oxygens:
+    idx = o_atom.GetIdx()
+    neighbors = [n.GetSymbol() for n in o_atom.GetNeighbors()]
+    print(f"Oxygen {idx} connected to: {neighbors}")
