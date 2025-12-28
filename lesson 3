@@ -1,0 +1,29 @@
+#Looping Over Atoms
+
+aspirin = Chem.MolFromSmiles('CC(=O)Oc1ccccc1C(=O)O')
+aspirin = Chem.AddHs(aspirin)  # Show explicit H for better demo
+
+print("Total atoms (including H):", aspirin.GetNumAtoms())
+# Output: ~22 (13 heavy + hydrogens)
+
+# Loop through every atom
+for atom in aspirin.GetAtoms():
+    idx = atom.GetIdx()                   # Number (0, 1, 2...)
+    symbol = atom.GetSymbol()             # C, O, H
+    degree = atom.GetDegree()             # How many bonds it has
+    charge = atom.GetFormalCharge()       # Usually 0
+    aromatic = atom.GetIsAromatic()       # True/False
+    
+    print(f"Atom {idx}: {symbol:<2} | bonds: {degree} | charge: {charge} | aromatic: {aromatic}")
+
+
+
+Draw.MolToImage(aspirin)
+aspirin
+
+
+
+
+#Looping over Bonds
+
+
