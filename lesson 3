@@ -47,3 +47,26 @@ for o_atom in oxygens:
     idx = o_atom.GetIdx()
     neighbors = [n.GetSymbol() for n in o_atom.GetNeighbors()]
     print(f"Oxygen {idx} connected to: {neighbors}")
+
+
+
+###adding simple derivatives
+
+
+# Original aspirin
+aspirin = Chem.MolFromSmiles('CC(=O)Oc1ccccc1C(=O)O')
+aspirin_display = Chem.AddHs(aspirin)
+
+# Aspirin methyl ester (direct SMILES - reliable!)
+methyl_ester_smiles = 'CC(=O)Oc1ccccc1C(=O)OC'  # -COOCH3
+methyl_ester = Chem.MolFromSmiles(methyl_ester_smiles)
+methyl_ester_display = Chem.AddHs(methyl_ester)
+
+# Grid
+Draw.MolsToGridImage(
+    [aspirin_display, methyl_ester_display],
+    legends=["Original Aspirin (-COOH)", "Aspirin Methyl Ester (-COOCH₃)"],
+    molsPerRow=2,
+    subImgSize=(500, 400),
+    useSVG=True
+)
