@@ -1,0 +1,13 @@
+#Getting number of aromatic atoms and visualization
+# Benzene (aromatic input)
+benzene = Chem.MolFromSmiles('c1ccccc1')
+print("Benzene has aromatic atoms:", sum(1 for a in benzene.GetAtoms() if a.GetIsAromatic()))  # 6
+
+# Aspirin (has benzene ring inside)
+aspirin = Chem.MolFromSmiles('CC(=O)Oc1ccccc1C(=O)O')
+print("Aspirin aromatic atoms:", sum(1 for a in aspirin.GetAtoms() if a.GetIsAromatic()))  # 6
+
+# Grid visualization — see the circles in rings!
+Draw.MolsToGridImage([benzene, aspirin], 
+                     legends=["Benzene (aromatic circle!)", "Aspirin (benzene ring inside)"],
+                     molsPerRow=2, subImgSize=(400,300))
