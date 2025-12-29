@@ -32,3 +32,26 @@ theophylline.SetProp("_Name", "Theophylline (caffeine relative)")
 Draw.MolsToGridImage([mols[2], theophylline], 
                      legends=["Caffeine", "Theophylline (demethylated)"],
                      molsPerRow=2, subImgSize=(450, 350))
+
+
+
+
+
+the simplest way to grid for multiple compounds
+
+# 1. Create molecules (Lesson 1)
+aspirin = Chem.MolFromSmiles('CC(=O)Oc1ccccc1C(=O)O')
+paracetamol = Chem.MolFromSmiles('CC(=O)Nc1ccc(O)cc1')
+caffeine = Chem.MolFromSmiles('CN1C=NC2=C1C(=O)N(C(=O)N2C)C')
+
+# Add explicit hydrogens (Lesson 2)
+mols = [Chem.AddHs(m) for m in [aspirin, paracetamol, caffeine]]
+
+# Names for grid (using _Name property - Lesson 1)
+names = ["Aspirin", "Paracetamol", "Caffeine"]
+for mol, name in zip(mols, names):
+    mol.SetProp("_Name", name)
+
+# 2. Visualize grid
+Draw.MolsToGridImage(mols, legends=names, molsPerRow=3, subImgSize=(400, 300), useSVG=True)
+
